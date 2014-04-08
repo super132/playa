@@ -1,0 +1,16 @@
+.rowFade {
+	-webkit-transition: all .6s ease;
+	transition: all .6s ease;
+}
+
+.shownRow {
+	-webkit-opacity: 1;
+	-moz-opacity: 1;
+	opacity: 1;
+}
+
+.hiddenRow {
+	-webkit-opacity: 0;
+	-moz-opacity: 0;
+	opacity: 0;
+}
