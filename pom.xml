@@ -27,6 +27,9 @@
 		<!-- Logging -->
 		<logback.version>1.0.13</logback.version>
 		<slf4j.version>1.7.5</slf4j.version>
+		
+		<!-- Retrofit REST client -->
+		<retrofit.version>1.5.0</retrofit.version>
 
 		<!-- Test -->
 		<junit.version>4.11</junit.version>
@@ -88,7 +91,13 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-
+		
+		<!-- REST client -->
+		<dependency>
+          <groupId>com.squareup.retrofit</groupId>
+          <artifactId>retrofit</artifactId>
+          <version>${retrofit.version}</version>
+        </dependency>
 		
 		<!-- Test Artifacts -->
 		<dependency>

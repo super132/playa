@@ -3,6 +3,8 @@
  */
 package com.playa.web.controllers;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.playa.data.beans.Activity;
 import com.playa.data.beans.Weather;
+import com.playa.data.services.ActivityService;
 import com.playa.data.services.WeatherService;
 
 /**
@@ -30,11 +34,19 @@ public class ActivitiesController {
     @Autowired
     private WeatherService service;
     
+    @Autowired
+    private ActivityService activityService;
+    
     @RequestMapping(method = RequestMethod.GET)
     public String getActivities() {
         Weather weatherInfo = service.getTodayWeather();
         
         LOGGER.info("Weather Info: " + weatherInfo);
+        
+        List<Activity> list = activityService.getActivities("20140411");
+        
+        LOGGER.info("Activity Info: {0}", list);
+        
         return "activities";
     }
 

@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.playa.data.beans.Activity;
+import com.playa.data.rest.RestConnector;
 import com.playa.data.services.ActivityService;
 import com.playa.data.services.WeatherService;
 import com.playa.services.impl.HKOWeatherService;
@@ -46,9 +46,23 @@ public class AppConfig {
     
     @Bean
     public ActivityService activityService() {
-        ActivityService service = new HkGovActivityService();
+        HkGovActivityService service = new HkGovActivityService();
         
-        return service;
+        service.setConnector(activityHKGovRestConnector());
+        
+        return (ActivityService)service;
     }
 
+    /**
+     * REST connector for activity service
+     * @return
+     */
+    @Bean
+    public RestConnector activityHKGovRestConnector() {
+        //connect to HK government services
+        RestConnector connector = new RestConnector("http://ogcef.one.gov.hk");
+        
+        return connector;
+    }
+    
 }
