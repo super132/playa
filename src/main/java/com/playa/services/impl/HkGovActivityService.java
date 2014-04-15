@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.playa.data.beans.Activity;
 import com.playa.data.rest.HKGovActivities;
+import com.playa.data.rest.HkGovJsonConverter;
 import com.playa.data.rest.RestConnector;
 import com.playa.data.services.ActivityService;
 
@@ -26,14 +27,16 @@ public class HkGovActivityService implements ActivityService {
      * @param date - The date string in YYYY-MM-DD to retrieve the activity from
      */
     public List<Activity> getActivities(String date) {
-        HKGovActivities activityService = this.getConnector().getService(HKGovActivities.class);
+        //Obtain the REST service client
+        HKGovActivities activityService = this.getConnector().getService(
+                HKGovActivities.class, new HkGovJsonConverter());
         
         List<String> idList = activityService.getActivityIds(date);
         List<Activity> result = new ArrayList<Activity>();
         
         for (String id : idList) {
             Activity activity = new Activity();
-            activity.setId(id);
+            activity.setId(id.split(",")[0]);
             
             result.add(activity);
         }

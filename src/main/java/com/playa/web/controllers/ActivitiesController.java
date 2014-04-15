@@ -43,7 +43,7 @@ public class ActivitiesController {
         
         LOGGER.info("Weather Info: " + weatherInfo);
         
-        List<Activity> list = activityService.getActivities("20140411");
+        List<Activity> list = activityService.getActivities("20140420");
         
         LOGGER.info("Activity Info: {0}", list);
         
